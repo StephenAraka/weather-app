@@ -8,10 +8,14 @@ import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { WeatherDataProps } from '@/types/types';
 import { getCurrentWeatherIcon } from '@/lib/utils';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useLinearGradientConfig } from '@/hooks/linearGradientConfig';
 
 const CurrentWeatherCard = ({ data }: WeatherDataProps) => {
+  const linearGradientConfig = useLinearGradientConfig();
+
   return (
-    <View className="w-full bg-primary-500 rounded-3xl">
+    <LinearGradient {...linearGradientConfig} style={{ borderRadius: 25 }}>
       <View className="flex flex-col justify-center items-center mt-4">
         <DefaultText bold text={data.city} textStyle="text-2xl"></DefaultText>
         {getCurrentWeatherIcon(data.weather[0].icon).animate ? (
@@ -26,7 +30,9 @@ const CurrentWeatherCard = ({ data }: WeatherDataProps) => {
             }}
           />
         ) : (
-          <Image source={getCurrentWeatherIcon(data.weather[0].icon).animation} />
+          <Image
+            source={getCurrentWeatherIcon(data.weather[0].icon).animation}
+          />
         )}
 
         <Text className="text-primary-100 font-bold text-6xl mt-4 mb-2">
@@ -76,7 +82,7 @@ const CurrentWeatherCard = ({ data }: WeatherDataProps) => {
           </View>
         </View>
       </View>
-    </View>
+    </LinearGradient>
   );
 };
 
