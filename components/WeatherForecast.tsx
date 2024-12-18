@@ -10,7 +10,7 @@ const WeatherForecast = () => {
       <DefaultText text='Forecast for the next few days ⬇️' bold textStyle='text-primary-500 text-xl ml-2' />
       <ScrollView
         horizontal
-        className='py-2 px-4'
+        className='py-2 px-3'
         showsHorizontalScrollIndicator={false}
       >
         <ForecastItem />

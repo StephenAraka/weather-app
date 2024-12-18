@@ -28,7 +28,7 @@ const Home = () => {
           onChangeText={(value) => setCityName(value)}
         />
         {locations.length > 0 && showLocations && (
-          <View className="absolute w-full bg-primary-100 top-16 rounded-3xl mt-2">
+          <View className="absolute w-full bg-primary-100 top-16 rounded-3xl mt-2 z-10">
             {locations.map((location, index) => {
               let showBorder = index + 1 !== locations.length;
               const borderClass = showBorder
