@@ -1,3 +1,4 @@
+import CurrentWeatherCard from "@/components/CurrentWeather";
 import InputField from "@/components/InputField";
 import { icons } from "@/constants";
 import { useState } from "react";
@@ -47,6 +48,10 @@ const Home = () => {
             </View>
           )
         }
+      </View>
+      {/* CURRENT WEATHER */}
+      <View className="mt-4 mx-4">
+        <CurrentWeatherCard />
       </View>
     </SafeAreaView>
   );
