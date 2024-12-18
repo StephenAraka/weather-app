@@ -14,14 +14,15 @@
 
 ---
 
-## App Branding and UI 🌐
+## App Branding and UI
+
 
 | Welcome | Sunny | Partially sunny | Cloudy | Rainy |
 |-|-|-|-|-|
 | <img src="./assets/screenshots/welcome.png"  > | <img src="./assets/screenshots/01.png"  > | <img src="./assets/screenshots/02.png"  > | <img src="./assets/screenshots/03.png"  > | <img src="./assets/screenshots/04.png"  > |
 ---
 
-## Demo Android APK 🤖 📱
+## Demo Android APK
 I have included a demo of the application on [this like here](https://drive.google.com/file/d/1Neg5g2G_CRgInqmPXylZOckpvj2CJJn8/view?usp=drive_link). Feel free to download it and run it on any android phone.
 
 ## Conventions  
@@ -30,7 +31,7 @@ I have included a demo of the application on [this like here](https://drive.goog
 
 ---
 
-## Architecture and General Considerations  🏛️
+## Architecture and General Considerations  
 
 ### Architecture  
 - **State Management**: Managed using **React Query** for asynchronous data fetching and caching.  
@@ -43,7 +44,7 @@ I have included a demo of the application on [this like here](https://drive.goog
 
 ---
 
-## Third-Party Libraries  📚
+## Third-Party Libraries  
 
 | Library                | Purpose                                                                 |
 |-------------------------|-------------------------------------------------------------------------|
@@ -59,7 +60,7 @@ I have included a demo of the application on [this like here](https://drive.goog
 
 ---
 
-## Building the Project  🛠️
+## Building the Project  
 
 ### Prerequisites  
 1. **Node.js** (v16 or later)  
@@ -68,7 +69,7 @@ I have included a demo of the application on [this like here](https://drive.goog
    npm install -g expo-cli
 
 
-### Steps to Build  🪜
+### Steps to Build  
 1. Clone the repository:
 ```bash
    git clone https://github.com/StephenAraka/weather-app.git
@@ -93,7 +94,7 @@ I have included a demo of the application on [this like here](https://drive.goog
 5. Test the app on a simulator or a physical device by scanning the QR code.
 
 
-## Additional Notes 📝
+## Additional Notes
 #### 1. Optimizations:
 
 - **Debouncing**: Search input is debounced to reduce API calls while typing.
