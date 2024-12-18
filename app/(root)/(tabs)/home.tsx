@@ -23,14 +23,12 @@ const Home = () => {
     const label = `${city}, ${countryCode}`;
 
     try {
-      // Await the data returned by the async function
       const { currentWeather, forecast } = await searchWeatherData({
         city: label,
         latitude,
         longitude,
       });
 
-      // Update state with the fetched data
       setCurrentWeather({ city, ...currentWeather });
       setForecast({ city, ...forecast });
     } catch (error) {
