@@ -4,22 +4,25 @@
 
 
 ## Table of Contents  
-1. [App Branding](#app-branding-and-ui)  
-2. [Conventions](#conventions)  
-3. [Architecture and General Considerations](#architecture-and-general-considerations)  
-4. [Third-Party Libraries](#third-party-libraries)  
-5. [Building the Project](#building-the-project)  
-6. [Additional Notes](#additional-notes)  
+1. [App Branding](#app-branding-and-ui) 
+2. [Demo Android APK](#demo-android-apk) 
+3. [Conventions](#conventions)  
+4. [Architecture and General Considerations](#architecture-and-general-considerations)  
+5. [Third-Party Libraries](#third-party-libraries)  
+6. [Building the Project](#building-the-project)  
+7. [Additional Notes](#additional-notes)  
 
 ---
 
-## App Branding and UI
-
+## App Branding and UI 🌐
 
 | Welcome | Sunny | Partially sunny | Cloudy | Rainy |
 |-|-|-|-|-|
 | <img src="./assets/screenshots/welcome.png"  > | <img src="./assets/screenshots/01.png"  > | <img src="./assets/screenshots/02.png"  > | <img src="./assets/screenshots/03.png"  > | <img src="./assets/screenshots/04.png"  > |
 ---
+
+## Demo Android APK 🤖 📱
+I have included a demo of the application on [this like here](https://drive.google.com/file/d/1Neg5g2G_CRgInqmPXylZOckpvj2CJJn8/view?usp=drive_link). Feel free to download it and run it on any android phone.
 
 ## Conventions  
 - **Language**: TypeScript for static typing with type safety and improved developer experience and formatted using Prettier. 
@@ -27,7 +30,7 @@
 
 ---
 
-## Architecture and General Considerations  
+## Architecture and General Considerations  🏛️
 
 ### Architecture  
 - **State Management**: Managed using **React Query** for asynchronous data fetching and caching.  
@@ -40,7 +43,7 @@
 
 ---
 
-## Third-Party Libraries  
+## Third-Party Libraries  📚
 
 | Library                | Purpose                                                                 |
 |-------------------------|-------------------------------------------------------------------------|
@@ -56,7 +59,7 @@
 
 ---
 
-## Building the Project  
+## Building the Project  🛠️
 
 ### Prerequisites  
 1. **Node.js** (v16 or later)  
@@ -65,7 +68,7 @@
    npm install -g expo-cli
 
 
-### Steps to Build  
+### Steps to Build  🪜
 1. Clone the repository:
 ```bash
    git clone https://github.com/StephenAraka/weather-app.git
@@ -90,7 +93,7 @@
 5. Test the app on a simulator or a physical device by scanning the QR code.
 
 
-## Additional Notes
+## Additional Notes 📝
 #### 1. Optimizations:
 
 - **Debouncing**: Search input is debounced to reduce API calls while typing.
