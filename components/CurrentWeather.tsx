@@ -1,31 +1,43 @@
-import { Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import LottieView from 'lottie-react-native';
-import { animations } from '@/constants';
 import DefaultText from './DefaultText';
 import Entypo from '@expo/vector-icons/Entypo';
 import Fontisto from '@expo/vector-icons/Fontisto';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { WeatherDataProps } from '@/types/types';
+import { getCurrentWeatherIcon } from '@/lib/utils';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useLinearGradientConfig } from '@/hooks/linearGradientConfig';
 
-const CurrentWeatherCard = () => {
+const CurrentWeatherCard = ({ data }: WeatherDataProps) => {
+  const linearGradientConfig = useLinearGradientConfig();
+
   return (
-    <View className="w-full bg-primary-500 rounded-3xl">
+    <LinearGradient {...linearGradientConfig} style={{ borderRadius: 25 }}>
       <View className="flex flex-col justify-center items-center mt-4">
-        <DefaultText bold text="Nairobi, KE" textStyle="text-2xl"></DefaultText>
-        <LottieView
-          loop
-          source={animations.thunderstorm}
-          autoPlay
-          style={{
-            height: 240,
-            marginTop: 20,
-            width: 240,
-          }}
-        />
+        <DefaultText bold text={data.city} textStyle="text-2xl"></DefaultText>
+        {getCurrentWeatherIcon(data.weather[0].icon).animate ? (
+          <LottieView
+            loop
+            source={getCurrentWeatherIcon(data.weather[0].icon).animation}
+            autoPlay
+            style={{
+              height: 192,
+              marginTop: 20,
+              width: 192,
+            }}
+          />
+        ) : (
+          <Image
+            source={getCurrentWeatherIcon(data.weather[0].icon).animation}
+          />
+        )}
+
         <Text className="text-primary-100 font-bold text-6xl mt-4 mb-2">
-          24°C
+          {Math.round(data.main.temp)}°C
         </Text>
-        <DefaultText text="Heavy rain" textStyle="text-xl" />
+        <DefaultText text={data.weather[0].description} textStyle="text-xl" />
       </View>
 
       <View className="m-4 border-primary-400 border-[1px]" />
@@ -36,7 +48,7 @@ const CurrentWeatherCard = () => {
           <View className="flex flex-row gap-2 items-center">
             <Entypo name="air" size={24} color="white" />
             <View>
-              <DefaultText text="3.7 km/h" />
+              <DefaultText text={`${data.wind.speed} m/s`} />
               <DefaultText text="Wind" />
             </View>
           </View>
@@ -44,7 +56,7 @@ const CurrentWeatherCard = () => {
           <View className="flex flex-row gap-2 items-center">
             <FontAwesome name="thermometer" size={24} color="white" />
             <View>
-              <DefaultText text="1010 mbar" />
+              <DefaultText text={`${data.main.pressure} hPa`} />
               <DefaultText text="Pressure" />
             </View>
           </View>
@@ -55,7 +67,7 @@ const CurrentWeatherCard = () => {
           <View className="flex flex-row gap-2 items-center">
             <Fontisto name="rain" size={24} color="white" />
             <View>
-              <DefaultText text="74%" />
+              <DefaultText text={`${data.clouds.all}%`} />
               <DefaultText text="Chance of rain" />
             </View>
           </View>
@@ -63,13 +75,13 @@ const CurrentWeatherCard = () => {
           <View className="flex flex-row gap-2 items-center">
             <FontAwesome6 name="droplet" size={24} color="white" />
             <View>
-              <DefaultText text="83%" />
+              <DefaultText text={`${data.main.humidity}%`} />
               <DefaultText text="Humidity" />
             </View>
           </View>
         </View>
       </View>
-    </View>
+    </LinearGradient>
   );
 };
 

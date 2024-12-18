@@ -1,10 +1,10 @@
 import { InputFieldProps } from "../types/types";
 import {
+  ActivityIndicator,
   Image,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  Text,
   TextInput,
   TouchableWithoutFeedback,
   View,
@@ -17,6 +17,7 @@ const InputField = ({
   inputStyle,
   iconStyle,
   className,
+  loading,
   ...props
 }: InputFieldProps) => (
   <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
@@ -25,8 +26,11 @@ const InputField = ({
         <View
           className={`flex flex-row items-center justify-start relative bg-neutral-100 rounded-3xl border border-neutral-100 focus:border-primary-500 ${containerStyle}`}
         >
-          {icon && (
+          {icon && !loading && (
             <Image source={icon} className={`w-6 h-6 ml-4 ${iconStyle}`} />
+          )}
+          {loading && (
+            <ActivityIndicator size="small" className="ml-4" />
           )}
           <TextInput
             className={`rounded-3xl p-4 font-JakartaSemiBold text-[15px] flex-1 ${inputStyle} text-left`}
