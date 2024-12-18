@@ -14,6 +14,7 @@ import {
   WEATHER_API_URL,
 } from '@/lib/api';
 import { Location } from '../../../types/types';
+import CitySearch from '@/components/CitySearch';
 
 const Home = () => {
   const [cityName, setCityName] = useState('');
@@ -81,41 +82,15 @@ const Home = () => {
     <SafeAreaView className=" flex flex-1 bg-general-100">
       <View className="mx-4">
         {/*//- INPUT FIELD */}
-        <InputField
-          placeholder="Search city"
-          icon={icons.search}
-          value={cityName}
-          onChangeText={(value) => {
-            setShowLocations(true);
-            setCityName(value);
-          }}
-          loading={isLoading}
+        <CitySearch
+          cityName={cityName}
+          setShowLocations={setShowLocations}
+          setCityName={setCityName}
+          isLoading={isLoading}
+          locations={locations}
+          showLocations={showLocations}
+          handleLocation={handleLocation}
         />
-        {locations?.data?.length > 0 && showLocations && (
-          <View className="absolute w-full bg-primary-100 top-16 rounded-3xl mt-2 z-10">
-            {locations.data.map((location: any, index: number) => {
-              let showBorder = index + 1 !== locations.length;
-              const borderClass = showBorder
-                ? ' border-b-2 border-b-general-100'
-                : '';
-              return (
-                <TouchableOpacity
-                  key={index}
-                  className={`flex-row items-center border-0 p-3 px-4 mb-1
-                      ${borderClass}`}
-                  onPress={() => handleLocation(location)}
-                >
-                  <Image
-                    source={icons.pin}
-                    resizeMode="contain"
-                    className="w-6 h-6 mr-4"
-                  />
-                  <Text>{`${location.name}, ${location.countryCode}`}</Text>
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-        )}
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -126,6 +101,7 @@ const Home = () => {
           </View>
         )}
 
+        {/*//- FORECAST  */}
         {forecast && (
           <View className="mt-4 mx-4">
             <WeatherForecast data={forecast} />
