@@ -72,3 +72,62 @@ declare interface WeatherData {
 declare interface WeatherDataProps {
   data: WeatherData;
 }
+
+declare interface WeatherForecast {
+  city: {
+    coord: {
+      lat: number;
+      lon: number;
+    };
+    country: string;
+    id: number;
+    name: string;
+    population: number;
+    sunrise: number;
+    sunset: number;
+    timezone: number;
+  };
+  cnt: number;
+  cod: string;
+  list: Array<{
+    clouds: {
+      all: number;
+    };
+    dt: number;
+    dt_txt: string;
+    main: {
+      temp: number;
+      feels_like: number;
+      temp_min: number;
+      temp_max: number;
+      pressure: number;
+      sea_level: number;
+      grnd_level: number;
+      humidity: number;
+    };
+    pop: number;
+    rain?: {
+      [key: string]: number;
+    };
+    sys: {
+      pod: string;
+    };
+    visibility: number;
+    weather: Array<{
+      id: number;
+      main: string;
+      description: string;
+      icon: string;
+    }>;
+    wind: {
+      speed: number;
+      deg: number;
+      gust: number;
+    };
+  }>;
+  message: number;
+}
+
+declare interface ForecastDataProps {
+  data: WeatherForecast;
+}

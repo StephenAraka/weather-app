@@ -7,8 +7,13 @@ import { Image, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import { GEO_API_OPTIONS, GEO_API_URL, WEATHER_API_KEY, WEATHER_API_URL } from '@/lib/api';
-import { Location } from "../../../types/types";
+import {
+  GEO_API_OPTIONS,
+  GEO_API_URL,
+  WEATHER_API_KEY,
+  WEATHER_API_URL,
+} from '@/lib/api';
+import { Location } from '../../../types/types';
 
 const Home = () => {
   const [cityName, setCityName] = useState('');
@@ -17,7 +22,11 @@ const Home = () => {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
 
-  const searchWeatherData = (selectedCity: { city: string, latitude: number, longitude: number }) => {
+  const searchWeatherData = (selectedCity: {
+    city: string;
+    latitude: number;
+    longitude: number;
+  }) => {
     const { city, longitude, latitude } = selectedCity;
     const lon = longitude.toString();
     const lat = latitude.toString();
@@ -29,22 +38,22 @@ const Home = () => {
       `${WEATHER_API_URL}/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${WEATHER_API_KEY}`
     );
 
-    Promise.all([currentWeatherFetch, forecastFetch]).then(async (response) => {
-      const weatherResponse = await response[0].json();
-      const forecastResponse = await response[1].json();
+    Promise.all([currentWeatherFetch, forecastFetch])
+      .then(async (response) => {
+        const weatherResponse = await response[0].json();
+        const forecastResponse = await response[1].json();
 
-      setCurrentWeather({ city, ...weatherResponse });
-      setForecast({ city, ...forecastResponse });
-    })
-    .catch((err) => console.log(err)
-    )
+        setCurrentWeather({ city, ...weatherResponse });
+        setForecast({ city, ...forecastResponse });
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleLocation = (selected: Location) => {
     setShowLocations(false);
     const { city, countryCode, latitude, longitude } = selected;
-    const label = `${city}, ${countryCode}`
-    
+    const label = `${city}, ${countryCode}`;
+
     searchWeatherData({ city: label, latitude, longitude });
   };
 
@@ -57,7 +66,11 @@ const Home = () => {
     return response.data;
   };
 
-  const { data: locations, isLoading, error } = useQuery({
+  const {
+    data: locations,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['cities', cityName],
     queryFn: () => fetchCities(cityName),
     enabled: cityName.length > 2,
@@ -73,8 +86,8 @@ const Home = () => {
           icon={icons.search}
           value={cityName}
           onChangeText={(value) => {
-            setShowLocations(true)
-            setCityName(value)
+            setShowLocations(true);
+            setCityName(value);
           }}
           loading={isLoading}
         />
@@ -107,13 +120,17 @@ const Home = () => {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         {/*//- CURRENT WEATHER */}
-        <View className="mt-4 mx-4">
-          <CurrentWeatherCard data={currentWeather} />
-        </View>
+        {currentWeather && (
+          <View className="mt-4 mx-4">
+            <CurrentWeatherCard data={currentWeather} />
+          </View>
+        )}
 
-        <View className="mt-4 mx-4">
-          <WeatherForecast />
-        </View>
+        {forecast && (
+          <View className="mt-4 mx-4">
+            <WeatherForecast data={forecast} />
+          </View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );

@@ -1,15 +1,15 @@
 import { View, Text, Image } from 'react-native';
 import React from 'react';
 import DefaultText from './DefaultText';
-import { weatherIcons } from '@/constants';
+import { getWeatherIcon } from '@/lib/utils';
 
-const ForecastItem = () => {
+const ForecastItem = ({ data, day }: any) => {
   return (
-    <View className="bg-general-200 flex items-center py-2 px-4 rounded-xl mr-4">
-      <DefaultText text="Monday" bold textStyle="text-sm" />
-      <DefaultText text="clear sky" textStyle="text-sm" />
-      <Image source={weatherIcons.icon02n} className="w-16 h-16" />
-      <DefaultText text="21°C" bold textStyle="" />
+    <View className="bg-general-200 flex items-center py-2 px-4 rounded-xl mr-4 w-[112] justify-between">
+      <DefaultText text={day} bold textStyle="text-sm text-center" />
+      <DefaultText text={data.weather[0].description} textStyle="text-sm text-center" />
+      <Image source={getWeatherIcon(data.weather[0].icon)} className="w-16 h-16" />
+      <DefaultText text={`${Math.round(data.main.temp_max)}°C / ${Math.round(data.main.temp_min)}°C`} bold textStyle="" />
     </View>
   );
 };
