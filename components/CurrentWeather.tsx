@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { animations } from '@/constants';
 import DefaultText from './DefaultText';
@@ -7,24 +7,30 @@ import Fontisto from '@expo/vector-icons/Fontisto';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { WeatherDataProps } from '@/types/types';
+import { getCurrentWeatherIcon } from '@/lib/utils';
 
-const CurrentWeatherCard = ({ data }: WeatherDataProps ) => {
+const CurrentWeatherCard = ({ data }: WeatherDataProps) => {
   return (
     <View className="w-full bg-primary-500 rounded-3xl">
       <View className="flex flex-col justify-center items-center mt-4">
         <DefaultText bold text={data.city} textStyle="text-2xl"></DefaultText>
-        <LottieView
-          loop
-          source={animations.thunderstorm}
-          autoPlay
-          style={{
-            height: 240,
-            marginTop: 20,
-            width: 240,
-          }}
-        />
+        {getCurrentWeatherIcon(data.weather[0].icon).animate ? (
+          <LottieView
+            loop
+            source={getCurrentWeatherIcon(data.weather[0].icon).animation}
+            autoPlay
+            style={{
+              height: 192,
+              marginTop: 20,
+              width: 192,
+            }}
+          />
+        ) : (
+          <Image source={getCurrentWeatherIcon(data.weather[0].icon).animation} />
+        )}
+
         <Text className="text-primary-100 font-bold text-6xl mt-4 mb-2">
-        {Math.round(data.main.temp)}°C
+          {Math.round(data.main.temp)}°C
         </Text>
         <DefaultText text={data.weather[0].description} textStyle="text-xl" />
       </View>
