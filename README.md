@@ -101,7 +101,7 @@ I have included a demo of the application on [this like here](https://drive.goog
 
 #### 2. Testing:
    - Manual testing for all screens and workflows.
-   - Future plans to integrate Jest for unit tests and Detox for end-to-end tests.
+   - Future plans to integrate Jest for unit tests and Cypress for end-to-end tests.
 
 #### 3. Future Enhancements:
 
@@ -112,8 +112,4 @@ I have included a demo of the application on [this like here](https://drive.goog
 - **Accessibility**: Adhering to WCAG guidelines for text contrast and touch targets.
 - **Scalability**: Modular architecture allows easy addition of new features.
 
-#### 4. Challenges & Learnings:
-
-- Integrating two separate APIs (GeoDB and OpenWeatherMap) taught me how to handle complex API workflows.
-- Learned how to optimize performance using React Query for caching and synchronization.
 
