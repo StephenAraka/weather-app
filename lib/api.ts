@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
 
 const GEO_API_KEY = process.env.GEO_API_KEY;
 export const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
@@ -31,7 +30,6 @@ export const searchWeatherData = async (selectedCity: {
   const { city, latitude, longitude } = selectedCity;
 
   try {
-    // Use Promise.all to fetch current weather and forecast concurrently
     const [currentWeatherResponse, forecastResponse] = await Promise.all([
       axiosInstance.get('/weather', {
         params: { lat: latitude, lon: longitude },
@@ -41,7 +39,6 @@ export const searchWeatherData = async (selectedCity: {
       }),
     ]);
 
-    // Return combined data
     return {
       city,
       currentWeather: currentWeatherResponse.data,

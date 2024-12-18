@@ -1,6 +1,5 @@
 import { Image, Text, View } from 'react-native';
 import LottieView from 'lottie-react-native';
-import { animations } from '@/constants';
 import DefaultText from './DefaultText';
 import Entypo from '@expo/vector-icons/Entypo';
 import Fontisto from '@expo/vector-icons/Fontisto';

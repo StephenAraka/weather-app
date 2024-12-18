@@ -1,16 +1,11 @@
 import CurrentWeatherCard from '@/components/CurrentWeather';
-import InputField from '@/components/InputField';
 import WeatherForecast from '@/components/WeatherForecast';
-import { icons } from '@/constants';
 import { useState } from 'react';
-import { Image, Text, TouchableOpacity, View, ScrollView } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import {
   fetchCities,
-  GEO_API_OPTIONS,
-  GEO_API_URL,
   searchWeatherData,
 } from '@/lib/api';
 import { Location } from '../../../types/types';

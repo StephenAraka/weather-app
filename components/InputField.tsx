@@ -5,7 +5,6 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  Text,
   TextInput,
   TouchableWithoutFeedback,
   View,

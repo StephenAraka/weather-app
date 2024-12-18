@@ -1,7 +1,6 @@
 import InputField from '@/components/InputField';
-import WeatherForecast from '@/components/WeatherForecast';
 import { icons } from '@/constants';
-import React, { useState } from 'react';
+import React from 'react';
 import { Image, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 
 const CitySearch = ({ cityName, setShowLocations, setCityName, isLoading, locations, showLocations, handleLocation }: any) => {

@@ -1,7 +1,6 @@
-import { View, Text, ScrollView, Image } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import React from 'react';
 import DefaultText from './DefaultText';
-import { weatherIcons } from '@/constants';
 import ForecastItem from './ForecastItem';
 import { ForecastDataProps } from '@/types/types';
 
